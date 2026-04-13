@@ -1,0 +1,171 @@
+/* Global Custom Styles & Animations for the Appreciation App */
+
+/* Smooth scrolling for anchor links (if any) */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Selection Color */
+::selection {
+  background-color: var(--color-blue-300);
+  color: white;
+}
+
+/* Custom Scrollbar for Webkit Browsers */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--color-blue-50);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-blue-300);
+  border-radius: 10px;
+  border: 2px solid var(--color-blue-50);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-blue-400);
+}
+
+/* Custom Scrollbar for Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-blue-300) var(--color-blue-50);
+}
+
+/* Base keyframes for floating background blobs */
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+/* Heartbeat animation for enter button icon */
+@keyframes heartBeat {
+  0% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(1.3);
+  }
+  28% {
+    transform: scale(1);
+  }
+  42% {
+    transform: scale(1.3);
+  }
+  70% {
+    transform: scale(1);
+  }
+}
+
+.heart-beat {
+  animation: heartBeat 2s infinite;
+}
+
+/* Subtle reveal up animation for content sections */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Staggered delay utility classes for lists/grids */
+.delay-100 {
+  animation-delay: 100ms;
+}
+.delay-200 {
+  animation-delay: 200ms;
+}
+.delay-300 {
+  animation-delay: 300ms;
+}
+.delay-400 {
+  animation-delay: 400ms;
+}
+.delay-500 {
+  animation-delay: 500ms;
+}
+
+/* Interactive Gallery Tilt/Flip Mechanics */
+/* Instead of pure 3D transforms, we'll use a smooth hover reveal 
+   which is more mobile friendly and elegant */
+.interactive-card {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.interactive-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px -10px rgba(37, 99, 235, 0.3);
+}
+
+.card-overlay {
+  transition:
+    opacity 0.4s ease,
+    backdrop-filter 0.4s ease;
+}
+
+.interactive-card:hover .card-overlay {
+  opacity: 1;
+  backdrop-filter: blur(8px);
+}
+
+.card-text {
+  transition:
+    transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.5s ease;
+  transform: translateY(20px);
+  opacity: 0;
+}
+
+.interactive-card:hover .card-text {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Ensure hover interactions are visible on touch devices */
+@media (hover: none) {
+  .card-overlay {
+    opacity: 1 !important;
+    backdrop-filter: blur(8px) !important;
+  }
+  .card-text {
+    transform: translateY(0) !important;
+    opacity: 1 !important;
+  }
+}
